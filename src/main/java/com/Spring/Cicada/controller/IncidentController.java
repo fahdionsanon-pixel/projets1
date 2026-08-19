@@ -11,20 +11,20 @@ import java.util.List;
 public class IncidentController {
 
     @Autowired
-    private IncidentService incidentService;
+    private IncidentService IncidentService;
 
     @GetMapping
     public List<Incident> getAllIncidents() {
-        return incidentService.getAllIncidents();
+        return IncidentService.getAllIncidents();
     }
 
     @PostMapping
     public Incident createIncident(@RequestBody Incident incident) {
-        return incidentService.createIncident(incident);
+        return IncidentService.createIncident(incident);
     }
 
     @DeleteMapping("/{id}")
     public void deleteIncident(@PathVariable Long id) {
-        incidentService.deleteIncident(id);
+        IncidentService.deleteIncident(id);
     }
 }
