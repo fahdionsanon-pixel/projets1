@@ -18,5 +18,7 @@ public class IncidentService {
         return IncidentRepository.save(incident);
     }
 
-    
+    public void deleteIncident(Long id) {
+        IncidentRepository.deleteById(id);
+    }
 }

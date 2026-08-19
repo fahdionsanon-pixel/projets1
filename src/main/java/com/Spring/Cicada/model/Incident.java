@@ -40,6 +40,9 @@ public class Incident {
         public void setStatut(String statut) {
             this.statut = statut;
         }
+        public void deleteIncident(){
+            
+        }
 
 
 
