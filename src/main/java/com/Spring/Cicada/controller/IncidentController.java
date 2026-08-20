@@ -23,6 +23,12 @@ public class IncidentController {
         return IncidentService.createIncident(incident);
     }
 
+    @PutMapping("/{id}")
+    public Incident updateIncident(@PathVariable Long id, @RequestBody Incident incident) {
+        incident.setId(id);
+        return IncidentService.createIncident(incident);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteIncident(@PathVariable Long id) {
         IncidentService.deleteIncident(id);
