@@ -18,19 +18,19 @@ public class Incident {
     @Enumerated(EnumType.STRING)
     private Priorite priorite;
 
-    private LocalDateTime DateCreation;
+    private LocalDateTime dateCreation;
 
     public Incident() {
         this.statut = Statut.NOUVEAU;
-        this.DateCreation = LocalDateTime.now();
+        this.dateCreation = LocalDateTime.now();
     }
 
     public LocalDateTime getDateCreation() {
-        return DateCreation;
+        return dateCreation;
     }
 
-    private void setDateCreation(LocalDateTime dateCreation) {
-        this.DateCreation = dateCreation;
+    public void setDateCreation(LocalDateTime dateCreation) {
+        this.dateCreation = dateCreation;
     }
 
     public Long getId() {
