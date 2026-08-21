@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Incidents</title>
+</head>
+<body>
+    <h1>Liste des incidents</h1>
+    <table border="1">
+        <tr>
+            <th>Titre</th>
+            <th>Statut</th>
+            <th>Priorité</th>
+        </tr>
+        <tr th:each="incident : ${incidents}">
+            <td th:text="${incident.titre}"></td>
+            <td th:text="${incident.statut}"></td>
+            <td th:text="${incident.priorite}"></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -20,6 +20,15 @@ public class Incident {
 
     private LocalDateTime dateCreation;
 
+    @ManyToOne private Utilisateur declarePar;
+    public Utilisateur getDeclarePar() {
+        return declarePar;
+    }
+
+    public void setDeclarePar(Utilisateur declarePar) {
+        this.declarePar = declarePar;
+    }
+
     public Incident() {
         this.statut = Statut.NOUVEAU;
         this.dateCreation = LocalDateTime.now();
