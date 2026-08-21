@@ -2,21 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Liste des Incidents</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Incidents</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1>Liste des incidents</h1>
-    <table border="1">
-        <tr>
-            <th>Titre</th>
-            <th>Statut</th>
-            <th>Priorité</th>
-        </tr>
-        <tr th:each="incident : ${incidents}">
-            <td th:text="${incident.titre}"></td>
-            <td th:text="${incident.statut}"></td>
-            <td th:text="${incident.priorite}"></td>
-        </tr>
-    </table>
+    <div class="topbar">
+        <h1>Incidents</h1>
+        <a class="btn" th:href="@{/incidents/nouveau}">Nouvel incident</a>
+    </div>
+
+    <main>
+        <div class="incident-list" th:if="${not #lists.isEmpty(incidents)}">
+            <div class="incident-row" th:each="incident : ${incidents}"
+                 th:classappend="'priorite-' + ${incident.priorite}">
+                <span class="incident-id" th:text="'#' + ${incident.id}"></span>
+                <span class="incident-titre">
+                    <span th:text="${incident.titre}"></span>
+                    <span class="desc" th:text="${incident.description}"></span>
+                </span>
+                <span class="badge-priorite" th:text="${incident.priorite}"></span>
+                <span class="statut">
+                    <span class="dot"
+                          th:classappend="${incident.statut.name() == 'NOUVEAU' or incident.statut.name() == 'EN_COURS'} ? 'actif' : ''"></span>
+                    <span th:text="${incident.statut}"></span>
+                </span>
+            </div>
+        </div>
+
+        <div class="empty-state" th:if="${#lists.isEmpty(incidents)}">
+            Aucun incident pour l'instant. Tout va bien.
+        </div>
+    </main>
 </body>
 </html>

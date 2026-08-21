@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nouvel incident</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="topbar">
+        <h1>Incidents</h1>
+        <a class="btn" th:href="@{/incidents}">Voir la liste</a>
+    </div>
+
+    <main>
+        <div class="form-card">
+            <h1>Déclarer un incident</h1>
+            <form th:action="@{/incidents/nouveau}" th:object="${incident}" method="post">
+
+                <label for="titre">Titre</label>
+                <input type="text" id="titre" th:field="*{titre}" placeholder="Ex : Le serveur ne répond plus" />
+
+                <label for="description">Description</label>
+                <textarea id="description" th:field="*{description}" placeholder="Détaille ce qui se passe"></textarea>
+
+                <label>Priorité</label>
+                <div class="priorite-chips">
+                    <label th:each="p : ${T(com.Spring.Cicada.model.Incident.Priorite).values()}">
+                        <input type="radio" th:field="*{priorite}" th:value="${p}" />
+                        <span class="chip" th:classappend="'chip-' + ${p}" th:text="${p}"></span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn">Créer l'incident</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
