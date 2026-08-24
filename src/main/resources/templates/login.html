@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Connexion</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <main>
+        <div class="form-card" style="margin-top: 60px;">
+            <h1>Connexion</h1>
+            <form th:action="@{/login}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                <label for="username">Email</label>
+                <input type="text" id="username" name="username" placeholder="ton@email.com" />
+
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" />
+
+                <button type="submit" class="btn">Se connecter</button>
+                <p style="margin-top: 16px; text-align: center;">
+                    <a th:href="@{/utilisateurs/nouveau}" style="color: var(--accent);">Créer un compte</a>
+                </p>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

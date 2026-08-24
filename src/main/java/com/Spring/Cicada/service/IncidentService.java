@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 @Service
 public class IncidentService {
     @Autowired
@@ -21,4 +22,5 @@ public class IncidentService {
     public void deleteIncident(Long id) {
         IncidentRepository.deleteById(id);
     }
+    
 }

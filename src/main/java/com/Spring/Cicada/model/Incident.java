@@ -89,4 +89,9 @@ public class Incident {
     public enum Priorite {
         BASSE, MOYENNE, HAUTE, CRITIQUE
     }
+
+    private String motDePasse;
+
+
+
 }

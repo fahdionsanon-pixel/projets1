@@ -15,7 +15,8 @@
     <main>
         <div class="form-card">
             <h1>Déclarer un incident</h1>
-            <form th:action="@{/incidents/nouveau}" th:object="${incident}" method="post">
+            <form th:action="@{/incidents/creation-formulaire}" th:object="${incident}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
                 <label for="titre">Titre</label>
                 <input type="text" id="titre" th:field="*{titre}" placeholder="Ex : Le serveur ne répond plus" />

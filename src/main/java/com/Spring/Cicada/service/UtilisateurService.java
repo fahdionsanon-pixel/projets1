@@ -5,6 +5,7 @@ import com.Spring.Cicada.repository.UtilisateurRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class UtilisateurService {
@@ -19,9 +20,12 @@ public class UtilisateurService {
         return utilisateurRepository.findById(id).orElse(null);
     }
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     public Utilisateur createUtilisateur(Utilisateur utilisateur) {
-        return utilisateurRepository.save(utilisateur);
-    }
+    utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));
+    return utilisateurRepository.save(utilisateur);
+}
 
     public Utilisateur updateUtilisateur(Long id, Utilisateur utilisateur) {
         Utilisateur existingUtilisateur = utilisateurRepository.findById(id).orElse(null);

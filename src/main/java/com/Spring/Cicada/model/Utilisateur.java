@@ -9,6 +9,7 @@ public class Utilisateur {
     private String nom;
     private String email;
     private String role;
+    private String motDePasse;
 
     public Utilisateur() {
     }
@@ -43,6 +44,14 @@ public class Utilisateur {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
     }
 
 }
