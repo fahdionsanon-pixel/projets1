@@ -1,9 +1,13 @@
 package com.Spring.Cicada.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@Setter
 public class Incident {
 
     @Id
@@ -20,66 +24,12 @@ public class Incident {
 
     private LocalDateTime dateCreation;
 
-    @ManyToOne private Utilisateur declarePar;
-    public Utilisateur getDeclarePar() {
-        return declarePar;
-    }
-
-    public void setDeclarePar(Utilisateur declarePar) {
-        this.declarePar = declarePar;
-    }
+    @ManyToOne
+    private Utilisateur declarerPar;
 
     public Incident() {
         this.statut = Statut.NOUVEAU;
         this.dateCreation = LocalDateTime.now();
-    }
-
-    public LocalDateTime getDateCreation() {
-        return dateCreation;
-    }
-
-    public void setDateCreation(LocalDateTime dateCreation) {
-        this.dateCreation = dateCreation;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitre() {
-        return titre;
-    }
-
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Statut getStatut() {
-        return statut;
-    }
-
-    public void setStatut(Statut statut) {
-        this.statut = statut;
-    }
-
-    public Priorite getPriorite() {
-        return priorite;
-    }
-
-    public void setPriorite(Priorite priorite) {
-        this.priorite = priorite;
     }
 
     public enum Statut {
@@ -89,9 +39,4 @@ public class Incident {
     public enum Priorite {
         BASSE, MOYENNE, HAUTE, CRITIQUE
     }
-
-    private String motDePasse;
-
-
-
 }
