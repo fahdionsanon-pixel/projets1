@@ -20,13 +20,13 @@ public class IncidentWebController {
         return "liste-incidents";
     }
 
-    @GetMapping("/incidents/Creation de Formulaire")
+    @GetMapping("/incidents/creation-formulaire")
     public String formulaireIncident(Model model) {
         model.addAttribute("incident", new Incident());
         return "formulaire-incident";
     }
 
-    @PostMapping("/incidents/Creation de Formulaire")
+    @PostMapping("/incidents/creation-formulaire")
     public String creerIncident(Incident incident) {
         incidentService.createIncident(incident);
         return "redirect:/incidents";
