@@ -27,6 +27,9 @@ public class Incident {
     @ManyToOne
     private Utilisateur declarerPar;
 
+    @ManyToOne
+    private Probleme probleme;
+
     public Incident() {
         this.statut = Statut.NOUVEAU;
         this.dateCreation = LocalDateTime.now();
