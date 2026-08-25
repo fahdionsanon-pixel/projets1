@@ -14,9 +14,15 @@ public class Utilisateur {
     private Long id;
     private String nom;
     private String email;
-    private String role;
     private String motDePasse;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     public Utilisateur() {
+    }
+
+    public enum Role {
+        ADMIN, TECHNICIEN, UTILISATEUR
     }
 }

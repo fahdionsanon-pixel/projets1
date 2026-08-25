@@ -23,7 +23,11 @@
                 <input type="password" id="motDePasse" th:field="*{motDePasse}" placeholder="••••••••" />
 
                 <label for="role">Rôle</label>
-                <input type="text" id="role" th:field="*{role}" placeholder="TECHNICIEN" />
+                <select id="role" th:field="*{role}">
+                    <option value="UTILISATEUR">Utilisateur</option>
+                    <option value="TECHNICIEN">Technicien</option>
+                    <option value="ADMIN">Admin</option>
+                </select>
 
                 <button type="submit" class="btn">Créer mon compte</button>
             </form>
