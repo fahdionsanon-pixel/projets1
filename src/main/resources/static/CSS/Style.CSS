@@ -184,7 +184,7 @@ label {
     margin-bottom: 8px;
 }
 
-input[type="text"], textarea {
+input[type="text"], input[type="password"], textarea {
     width: 100%;
     background: var(--bg);
     border: 1px solid var(--border);
