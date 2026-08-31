@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Actifs IT</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="topbar">
+        <h1>Actifs IT</h1>
+        <a class="btn" th:href="@{/actifit/nouveau}">Nouvel actif</a>
+    </div>
+    <main>
+        <div class="incident-list" th:if="${not #lists.isEmpty(actifits)}">
+            <div class="incident-row" th:each="a : ${actifits}">
+                <span class="incident-id" th:text="'#' + ${a.id}"></span>
+                <span class="incident-titre">
+                    <span th:text="${a.nom}"></span>
+                    <span class="desc" th:text="${a.type} + ' — v' + ${a.version}"></span>
+                </span>
+                <a th:href="@{/actifit/delete/{id}(id=${a.id})}" style="color: var(--critique);">Supprimer</a>
+            </div>
+        </div>
+        <div class="empty-state" th:if="${#lists.isEmpty(actifits)}">
+            Aucun actif IT enregistré pour l'instant.
+        </div>
+    </main>
+</body>
+</html>
