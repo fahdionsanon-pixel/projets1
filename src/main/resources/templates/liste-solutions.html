@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solutions</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="topbar">
+        <h1>Solutions</h1>
+        <a class="btn" th:href="@{/solutions/nouveau}">Nouvelle solution</a>
+    </div>
+    <main>
+        <div class="incident-list" th:if="${not #lists.isEmpty(solutions)}">
+            <div class="incident-row" th:each="s : ${solutions}">
+                <span class="incident-id" th:text="'#' + ${s.id}"></span>
+                <span class="incident-titre">
+                    <span th:text="${s.description}"></span>
+                    <span class="desc" th:text="${s.type}"></span>
+                </span>
+                <span class="badge-priorite" th:text="${s.statut}"></span>
+            </div>
+        </div>
+        <div class="empty-state" th:if="${#lists.isEmpty(solutions)}">
+            Aucune solution enregistrée pour l'instant.
+        </div>
+    </main>
+</body>
+</html>

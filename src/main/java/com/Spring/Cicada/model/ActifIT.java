@@ -3,6 +3,7 @@ package com.Spring.Cicada.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,4 +19,7 @@ public class ActifIT {
 
     public ActifIT() {
     }
+
+    @ManyToMany(mappedBy = "actifs")
+    private List<Solution> solutions;
 }
