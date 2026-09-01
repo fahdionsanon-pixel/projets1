@@ -31,7 +31,16 @@
                 <span class="statut">
                     <span class="dot"
                           th:classappend="${incident.statut.name() == 'NOUVEAU' or incident.statut.name() == 'EN_COURS'} ? 'actif' : ''"></span>
-                    <span th:text="${incident.statut}"></span>
+                    <form th:action="@{/incidents/{id}/statut(id=${incident.id})}" method="post" style="display:inline;">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                        <select name="statut" onchange="this.form.submit()"
+                                style="width:auto; margin:0; padding:4px 8px; font-size:12px;">
+                            <option value="NOUVEAU" th:selected="${incident.statut.name() == 'NOUVEAU'}">NOUVEAU</option>
+                            <option value="EN_COURS" th:selected="${incident.statut.name() == 'EN_COURS'}">EN_COURS</option>
+                            <option value="RESOLU" th:selected="${incident.statut.name() == 'RESOLU'}">RESOLU</option>
+                            <option value="FERME" th:selected="${incident.statut.name() == 'FERME'}">FERME</option>
+                        </select>
+                    </form>
                 </span>
             </div>
         </div>

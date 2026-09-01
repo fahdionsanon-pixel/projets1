@@ -20,6 +20,7 @@ public class Solution {
     private Statut statut;
 
     public Solution() {
+        this.statut = Statut.PROPOSEE;
     }
 
     public enum Statut {

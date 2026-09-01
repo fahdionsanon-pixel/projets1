@@ -21,6 +21,7 @@ public class Probleme {
     private String cause;
     
     public Probleme() {
+        this.statut = Statut.OUVERT;
     }
 
     public enum Statut {

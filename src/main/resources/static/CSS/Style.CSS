@@ -205,11 +205,30 @@ input[type="text"], input[type="password"], textarea {
 .nav-links a {
     color: var(--text-muted);
     text-decoration: none;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
 }
 
 .nav-links a:hover {
+    color: var(--accent);
+}
+
+/* Coloration par statut pour Probleme et Solution */
+.incident-row.statut-OUVERT    { --border-priorite: var(--basse); }
+.incident-row.statut-EN_COURS   { --border-priorite: var(--moyenne); }
+.incident-row.statut-RESOLU     { --border-priorite: var(--accent); }
+.incident-row.statut-FERME      { --border-priorite: var(--text-muted); }
+
+.incident-row.statut-PROPOSEE   { --border-priorite: var(--moyenne); }
+.incident-row.statut-APPROUVEE  { --border-priorite: var(--accent); }
+.incident-row.statut-REJETEE    { --border-priorite: var(--critique); }
+
+.badge-type {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     color: var(--accent);
 }
 

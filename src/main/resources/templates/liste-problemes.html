@@ -19,13 +19,27 @@
     </div>
     <main>
         <div class="incident-list" th:if="${not #lists.isEmpty(problemes)}">
-            <div class="incident-row" th:each="p : ${problemes}">
+            <div class="incident-row" th:each="p : ${problemes}"
+                 th:classappend="'statut-' + ${p.statut}">
                 <span class="incident-id" th:text="'#' + ${p.id}"></span>
                 <span class="incident-titre">
                     <span th:text="${p.description}"></span>
                     <span class="desc" th:text="${p.cause}"></span>
                 </span>
-                <span class="badge-priorite" th:text="${p.statut}"></span>
+                <form th:action="@{/problemes/{id}/statut(id=${p.id})}" method="post" style="display:inline;">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <select name="statut" onchange="this.form.submit()"
+                            style="width:auto; margin:0; padding:4px 8px; font-size:12px;">
+                        <option value="OUVERT" th:selected="${p.statut.name() == 'OUVERT'}">OUVERT</option>
+                        <option value="EN_COURS" th:selected="${p.statut.name() == 'EN_COURS'}">EN_COURS</option>
+                        <option value="RESOLU" th:selected="${p.statut.name() == 'RESOLU'}">RESOLU</option>
+                        <option value="FERME" th:selected="${p.statut.name() == 'FERME'}">FERME</option>
+                    </select>
+                </form>
+                <span class="statut">
+                    <span class="dot"
+                          th:classappend="${p.statut.name() == 'OUVERT' or p.statut.name() == 'EN_COURS'} ? 'actif' : ''"></span>
+                </span>
             </div>
         </div>
         <div class="empty-state" th:if="${#lists.isEmpty(problemes)}">

@@ -19,4 +19,12 @@ public class ProblemeService {
     public Probleme createProbleme(Probleme probleme) {
         return problemeRepository.save(probleme);
     }
+
+    public Probleme updateStatut(Long id, Probleme.Statut nouveauStatut) {
+        Probleme probleme = problemeRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Probleme introuvable : " + id));
+        probleme.setStatut(nouveauStatut);
+        return problemeRepository.save(probleme);
+    }
+
 }

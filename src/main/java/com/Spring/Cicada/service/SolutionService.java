@@ -19,4 +19,12 @@ public class SolutionService {
     public Solution createSolution(Solution solution) {
         return solutionRepository.save(solution);
     }
+
+    public Solution updateStatut(Long id, Solution.Statut nouveauStatut) {
+        Solution solution = solutionRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Solution introuvable : " + id));
+        solution.setStatut(nouveauStatut);
+        return solutionRepository.save(solution);
+    }
+
 }
