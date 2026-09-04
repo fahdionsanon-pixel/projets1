@@ -26,7 +26,6 @@
                     <span class="desc" th:text="'v' + ${a.version}"></span>
                 </span>
                 <span class="badge-type" th:text="${a.type}"></span>
-                <a th:href="@{/actifit/delete/{id}(id=${a.id})}" style="color: var(--critique); font-size: 13px;">Supprimer</a>
             </div>
         </div>
         <div class="empty-state" th:if="${#lists.isEmpty(actifits)}">

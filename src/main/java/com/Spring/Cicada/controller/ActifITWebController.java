@@ -31,12 +31,5 @@ public class ActifITWebController {
         model.addAttribute("actifits", actifITService.getAllActifITs());
         return "actifit/list";
     }
-
-    @GetMapping("/delete/{id}")
-    public String deleteActifIT(@PathVariable Long id) {
-        actifITService.deleteActifIT(id);
-        return "redirect:/actifit/list";
-    }
-
     
 }

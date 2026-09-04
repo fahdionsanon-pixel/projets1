@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
+import jakarta.validation.constraints.NotBlank;
+
 
 @Entity
 @Getter
@@ -13,7 +15,11 @@ public class Incident {
     @Id
     @GeneratedValue
     private Long id;
+
+    @NotBlank(message = "Le titre est obligatoire")
     private String titre;
+
+    @NotBlank(message = "La description est obligatoire")
     private String description;
 
     @Enumerated(EnumType.STRING)
@@ -22,6 +28,7 @@ public class Incident {
     @Enumerated(EnumType.STRING)
     private Priorite priorite;
 
+
     private LocalDateTime dateCreation;
 
     @ManyToOne
@@ -29,6 +36,7 @@ public class Incident {
 
     @ManyToOne
     private Probleme probleme;
+    
 
     public Incident() {
         this.statut = Statut.NOUVEAU;

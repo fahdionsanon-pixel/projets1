@@ -22,8 +22,10 @@ public class UtilisateurService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     public Utilisateur createUtilisateur(Utilisateur utilisateur) {
     utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));
+    utilisateur.setRole(Utilisateur.Role.UTILISATEUR);
     return utilisateurRepository.save(utilisateur);
 }
 
