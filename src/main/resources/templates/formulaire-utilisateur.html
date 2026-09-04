@@ -15,12 +15,15 @@
 
                 <label for="nom">Nom</label>
                 <input type="text" id="nom" th:field="*{nom}" placeholder="Marc Dupont" />
+                <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" style="color: var(--critique); font-size: 13px;"></span>
 
                 <label for="email">Email</label>
                 <input type="text" id="email" th:field="*{email}" placeholder="marc@exemple.com" />
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: var(--critique); font-size: 13px;"></span>
 
                 <label for="motDePasse">Mot de passe</label>
                 <input type="password" id="motDePasse" th:field="*{motDePasse}" placeholder="••••••••" />
+                <span th:if="${#fields.hasErrors('motDePasse')}" th:errors="*{motDePasse}" style="color: var(--critique); font-size: 13px;"></span>
                 
                 <button type="submit" class="btn">Créer mon compte</button>
             </form>

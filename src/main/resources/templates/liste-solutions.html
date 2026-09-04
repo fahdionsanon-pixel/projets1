@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Solutions</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-</head>
+<head th:replace="~{fragments/head :: commun('Solutions')}"></head>
 <body>
-    <div class="nav-links">
-        <a th:href="@{/incidents}">Incidents</a>
-        <a th:href="@{/problemes}">Problèmes</a>
-        <a th:href="@{/solutions}">Solutions</a>
-        <a th:href="@{/actifit/list}">Actifs IT</a>
-    </div>
+    <div th:replace="~{fragments/nav :: navigation}"></div>
     <div class="topbar">
         <h1>Solutions</h1>
         <a class="btn" th:href="@{/solutions/nouveau}">Nouvelle solution</a>
+        <div th:replace="~{fragments/nav :: deconnexion}"></div>
     </div>
     <main>
         <div class="incident-list" th:if="${not #lists.isEmpty(solutions)}">

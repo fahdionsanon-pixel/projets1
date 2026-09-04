@@ -20,6 +20,7 @@
 
                 <label for="titre">Titre</label>
                 <input type="text" id="titre" th:field="*{titre}" placeholder="Ex : Le serveur ne répond plus" />
+                <span th:if="${#fields.hasErrors('titre')}" th:errors="*{titre}" style="color: var(--critique); font-size: 13px;"></span>
 
                 <label for="description">Description</label>
                 <textarea id="description" th:field="*{description}" placeholder="Détaille ce qui se passe"></textarea>
@@ -31,7 +32,7 @@
                         <span class="chip" th:classappend="'chip-' + ${p}" th:text="${p}"></span>
                     </label>
                 </div>
-
+               
                 <button type="submit" class="btn">Créer l'incident</button>
             </form>
         </div>

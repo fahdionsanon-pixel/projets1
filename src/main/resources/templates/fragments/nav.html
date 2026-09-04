@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+
+        <div th:fragment="navigation" class="nav-links">
+            <a th:href="@{/incidents}">Incidents</a>
+            <a th:href="@{/problemes}">Problèmes</a>
+            <a th:href="@{/solutions}">Solutions</a>
+            <a th:href="@{/actifit/list}">Actifs IT</a>
+        </div>
+
+        <form th:fragment="deconnexion" th:action="@{/logout}" method="post" style="display:inline;">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <button type="submit" class="btn" style="background: transparent; border: 1px solid var(--border); color: var(--text-muted);">
+                Déconnexion
+            </button>
+        </form>
+
+    </body>
+</html>

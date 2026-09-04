@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
+
 
 @Controller
 public class IncidentWebController {
@@ -29,7 +32,10 @@ public class IncidentWebController {
     }
 
     @PostMapping("/incidents/creation-formulaire")
-    public String creerIncident(Incident incident) {
+    public String creerIncident(@Valid Incident incident, BindingResult result) {
+        if (result.hasErrors()) {
+            return "formulaire-incident";
+        }
         incidentService.createIncident(incident);
         return "redirect:/incidents";
     }
