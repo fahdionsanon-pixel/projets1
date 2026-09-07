@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Actifs IT</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-</head>
+<head th:replace="~{fragments/head :: commun('Incidents')}"></head>
 <body>
     <div class="nav-links">
         <a th:href="@{/incidents}">Incidents</a>
@@ -15,7 +10,8 @@
     </div>
     <div class="topbar">
         <h1>Actifs IT</h1>
-        <a class="btn" th:href="@{/actifit/nouveau}">Nouvel actif</a>
+        <a class="btn" th:href="@{/actifit/nouveau}">Nouveau actif</a>
+        <div th:replace="~{fragments/nav :: deconnexion}"></div>
     </div>
     <main>
         <div class="incident-list" th:if="${not #lists.isEmpty(actifits)}">
