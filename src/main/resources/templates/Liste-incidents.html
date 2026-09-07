@@ -34,6 +34,7 @@
                             <option value="RESOLU" th:selected="${incident.statut.name() == 'RESOLU'}">RESOLU</option>
                             <option value="FERME" th:selected="${incident.statut.name() == 'FERME'}">FERME</option>
                         </select>
+                        <a th:href="@{/incidents/{id}/modifier(id=${incident.id})}" style="color: var(--accent); font-size: 13px;">Modifier</a>
                     </form>
                 </span>
             </div>

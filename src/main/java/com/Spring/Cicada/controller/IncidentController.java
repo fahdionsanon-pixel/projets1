@@ -5,6 +5,9 @@ import com.Spring.Cicada.service.IncidentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/incidents")
@@ -33,4 +36,11 @@ public class IncidentController {
     public void deleteIncident(@PathVariable Long id) {
         IncidentService.deleteIncident(id);
     }
+
+    @GetMapping("path")
+    public String getMethodName(@RequestParam String param) {
+        return new String();
+    }
+    
+    
 }

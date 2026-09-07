@@ -58,4 +58,23 @@ public class IncidentWebController {
         return "redirect:/incidents";
     }
 
+    @GetMapping("/incidents/{id}/modifier")
+    public String formulaireModification(@PathVariable Long id, Model model) {
+        model.addAttribute("incident", incidentService.getIncidentById(id));
+        model.addAttribute("problemes", problemeService.getAllProblemes());
+        model.addAttribute("actifs", actifITService.getAllActifITs());
+        return "formulaire-incident-modifier";
+    }
+
+    @PostMapping("/incidents/{id}/modifier")
+    public String modifierIncident(@PathVariable Long id, @Valid Incident incident, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("problemes", problemeService.getAllProblemes());
+            model.addAttribute("actifs", actifITService.getAllActifITs());
+            return "formulaire-incident-modifier";
+        }
+        incidentService.updateIncident(id, incident);
+        return "redirect:/incidents";
+    }
+
 }

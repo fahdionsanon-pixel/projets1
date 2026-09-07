@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nouvel incident</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="topbar">
+        <h1>Incidents</h1>
+        <a class="btn" th:href="@{/incidents}">Voir la liste</a>
+    </div>
+
+    <main>
+        <div class="form-card">
+            <h1>Déclarer un incident</h1>
+            <form th:action="@{/incidents/creation-formulaire}" th:object="${incident}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                <label for="titre">Titre</label>
+                <input type="text" id="titre" th:field="*{titre}" placeholder="Ex : Le serveur ne répond plus" />
+                <span th:if="${#fields.hasErrors('titre')}" th:errors="*{titre}" style="color: var(--critique); font-size: 13px;"></span>
+
+                <label for="description">Description</label>
+                <textarea id="description" th:field="*{description}" placeholder="Détaille ce qui se passe"></textarea>
+
+                <label>Priorité</label>
+                <div class="priorite-chips">
+                    <label th:each="p : ${T(com.Spring.Cicada.model.Incident.Priorite).values()}">
+                        <input type="radio" th:field="*{priorite}" th:value="${p}" />
+                        <span class="chip" th:classappend="'chip-' + ${p}" th:text="${p}"></span>
+                    </label>
+                </div>
+                <label for="probleme">Problème lié (optionnel)</label>
+                <select id="probleme" th:field="*{probleme}">
+                    <option value="">— Aucun —</option>
+                    <option th:each="p : ${problemes}"
+                            th:value="${p.id}"
+                            th:text="${p.description}">
+                    </option>
+                </select>
+                <label>Actifs concernés (optionnel)</label>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px;">
+                    <label th:each="actif : ${actifs}" style="display: flex; align-items: center; gap: 8px; text-transform: none; font-weight: 400; color: var(--text);">
+                        <input type="checkbox" th:field="*{actifsConcernes}" th:value="${actif.id}" style="width: auto; margin: 0;" />
+                        <span th:text="${actif.nom} + ' (' + ${actif.type} + ')'"></span>
+                    </label>
+                </div>
+                <button type="submit" class="btn">Créer l'incident</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
