@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
 import jakarta.validation.constraints.NotBlank;
+import java.util.List;
 
 
 @Entity
@@ -36,7 +37,9 @@ public class Incident {
 
     @ManyToOne
     private Probleme probleme;
-    
+
+    @ManyToMany
+    private List<ActifIT> actifsConcernes;
 
     public Incident() {
         this.statut = Statut.NOUVEAU;

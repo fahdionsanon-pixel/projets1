@@ -32,7 +32,21 @@
                         <span class="chip" th:classappend="'chip-' + ${p}" th:text="${p}"></span>
                     </label>
                 </div>
-               
+                <label for="probleme">Problème lié (optionnel)</label>
+                <select id="probleme" th:field="*{probleme}">
+                    <option value="">— Aucun —</option>
+                    <option th:each="p : ${problemes}"
+                            th:value="${p.id}"
+                            th:text="${p.description}">
+                    </option>
+                </select>
+                <label>Actifs concernés (optionnel)</label>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px;">
+                    <label th:each="actif : ${actifs}" style="display: flex; align-items: center; gap: 8px; text-transform: none; font-weight: 400; color: var(--text);">
+                        <input type="checkbox" th:field="*{actifsConcernes}" th:value="${actif.id}" style="width: auto; margin: 0;" />
+                        <span th:text="${actif.nom} + ' (' + ${actif.type} + ')'"></span>
+                    </label>
+                </div>
                 <button type="submit" class="btn">Créer l'incident</button>
             </form>
         </div>
