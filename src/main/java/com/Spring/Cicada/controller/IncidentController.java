@@ -35,12 +35,6 @@ public class IncidentController {
     @DeleteMapping("/{id}")
     public void deleteIncident(@PathVariable Long id) {
         IncidentService.deleteIncident(id);
-    }
-
-    @GetMapping("path")
-    public String getMethodName(@RequestParam String param) {
-        return new String();
-    }
-    
+    }    
     
 }

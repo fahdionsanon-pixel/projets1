@@ -14,8 +14,8 @@
 
     <main>
         <div class="form-card">
-            <h1>Déclarer un incident</h1>
-            <form th:action="@{/incidents/creation-formulaire}" th:object="${incident}" method="post">
+            <h1>Modifier l'incident</h1>
+            <form th:action="@{/incidents/{id}/modifier(id=${incident.id})}" th:object="${incident}" method="post">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
                 <label for="titre">Titre</label>
@@ -47,7 +47,7 @@
                         <span th:text="${actif.nom} + ' (' + ${actif.type} + ')'"></span>
                     </label>
                 </div>
-                <button type="submit" class="btn">Créer l'incident</button>
+                <button type="submit" class="btn">Enregistrer les modifications</button>
             </form>
         </div>
     </main>

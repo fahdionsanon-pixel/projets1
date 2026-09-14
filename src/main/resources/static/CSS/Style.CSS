@@ -84,7 +84,7 @@ main {
 
 .incident-row {
     display: grid;
-    grid-template-columns: 90px 1fr 140px 140px;
+    grid-template-columns: 80px 1fr 110px 150px 130px;
     align-items: center;
     gap: 16px;
     background: var(--surface);
@@ -292,3 +292,9 @@ textarea { min-height: 90px; resize: vertical; }
 }
 
 .nav-links a:hover { color: var(--accent); }
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}

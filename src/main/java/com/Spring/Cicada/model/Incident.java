@@ -20,7 +20,6 @@ public class Incident {
     @NotBlank(message = "Le titre est obligatoire")
     private String titre;
 
-    @NotBlank(message = "La description est obligatoire")
     private String description;
 
     @Enumerated(EnumType.STRING)

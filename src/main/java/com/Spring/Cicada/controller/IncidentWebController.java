@@ -77,4 +77,12 @@ public class IncidentWebController {
         return "redirect:/incidents";
     }
 
+    @PostMapping("/incidents/{id}/supprimer")
+    public String supprimerIncident(@PathVariable Long id) {
+        incidentService.deleteIncident(id);
+        return "redirect:/incidents";
+    }
+
+
+
 }
