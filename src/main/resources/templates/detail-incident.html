@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: commun('Détail incident')}"></head>
+<body>
+    <div th:replace="~{fragments/nav :: navigation}"></div>
+    <div class="topbar">
+        <h1>Incident #<span th:text="${incident.id}"></span></h1>
+        <a class="btn" th:href="@{/incidents}">Retour à la liste</a>
+    </div>
+
+    <main>
+        <div class="form-card">
+            <h1 th:text="${incident.titre}"></h1>
+
+            <label>Description</label>
+            <p th:text="${incident.description}" style="margin-top: 4px; margin-bottom: 20px;"></p>
+
+            <label>Priorité</label>
+            <p th:text="${incident.priorite}" style="margin-top: 4px; margin-bottom: 20px;"></p>
+
+            <label>Statut</label>
+            <p th:text="${incident.statut}" style="margin-top: 4px; margin-bottom: 20px;"></p>
+
+            <label>Créé le</label>
+            <p th:text="${incident.dateCreation}" style="margin-top: 4px; margin-bottom: 20px;"></p>
+
+            <label>Déclaré par</label>
+            <p th:text="${incident.declarerPar != null} ? ${incident.declarerPar.nom} : 'Non renseigné'" style="margin-top: 4px; margin-bottom: 20px;"></p>
+
+            <label>Problème lié</label>
+            <p th:text="${incident.probleme != null} ? ${incident.probleme.description} : 'Aucun'" style="margin-top: 4px; margin-bottom: 20px;"></p>
+
+            <label>Actifs concernés</label>
+            <ul style="margin-top: 4px;">
+                <li th:each="a : ${incident.actifsConcernes}" th:text="${a.nom} + ' (' + ${a.type} + ')'"></li>
+                <li th:if="${#lists.isEmpty(incident.actifsConcernes)}">Aucun</li>
+            </ul>
+
+            <a class="btn" th:href="@{/incidents/{id}/modifier(id=${incident.id})}" style="margin-top: 20px; display: inline-block;">Modifier</a>
+        </div>
+    </main>
+</body>
+</html>

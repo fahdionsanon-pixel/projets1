@@ -1,10 +1,11 @@
 package com.Spring.Cicada.controller;
 
 import com.Spring.Cicada.model.Incident;
+import com.Spring.Cicada.model.Utilisateur;
 import com.Spring.Cicada.service.ActifITService;
 import com.Spring.Cicada.service.IncidentService;
 import com.Spring.Cicada.service.ProblemeService;
-
+import com.Spring.Cicada.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
+import org.springframework.security.core.Authentication;
 
 
 @Controller
@@ -27,6 +29,9 @@ public class IncidentWebController {
 
     @Autowired
     private ActifITService actifITService;
+
+    @Autowired
+    private UtilisateurService utilisateurService;
 
     @GetMapping("/incidents/creation-formulaire")
     public String formulaireIncident(Model model) {
@@ -44,10 +49,12 @@ public class IncidentWebController {
     }
 
     @PostMapping("/incidents/creation-formulaire")
-    public String creerIncident(@Valid Incident incident, BindingResult result) {
+    public String creerIncident(@Valid Incident incident, BindingResult result, Authentication authentication) {
         if (result.hasErrors()) {
             return "formulaire-incident";
         }
+        Utilisateur utilisateurConnecte = utilisateurService.getByEmail(authentication.getName());
+        incident.setDeclarerPar(utilisateurConnecte);
         incidentService.createIncident(incident);
         return "redirect:/incidents";
     }
@@ -81,6 +88,12 @@ public class IncidentWebController {
     public String supprimerIncident(@PathVariable Long id) {
         incidentService.deleteIncident(id);
         return "redirect:/incidents";
+    }
+
+    @GetMapping("/incidents/{id}")
+    public String detailIncident(@PathVariable Long id, Model model) {
+        model.addAttribute("incident", incidentService.getIncidentById(id));
+        return "detail-incident";
     }
 
 

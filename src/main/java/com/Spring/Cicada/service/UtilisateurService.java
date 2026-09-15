@@ -12,6 +12,9 @@ public class UtilisateurService {
     @Autowired
     private UtilisateurRepository utilisateurRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public List<Utilisateur> getAllUtilisateurs() {
         return utilisateurRepository.findAll();
     }
@@ -20,14 +23,11 @@ public class UtilisateurService {
         return utilisateurRepository.findById(id).orElse(null);
     }
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     public Utilisateur createUtilisateur(Utilisateur utilisateur) {
-    utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));
-    utilisateur.setRole(Utilisateur.Role.UTILISATEUR);
-    return utilisateurRepository.save(utilisateur);
-}
+        utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));
+        utilisateur.setRole(Utilisateur.Role.UTILISATEUR);
+        return utilisateurRepository.save(utilisateur);
+    }
 
     public Utilisateur updateUtilisateur(Long id, Utilisateur utilisateur) {
         Utilisateur existingUtilisateur = utilisateurRepository.findById(id).orElse(null);
@@ -42,5 +42,9 @@ public class UtilisateurService {
     public void deleteUtilisateur(Long id) {
         utilisateurRepository.deleteById(id);
     }
-    
+
+    public Utilisateur getByEmail(String email) {
+        return utilisateurRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Utilisateur introuvable : " + email));
+    }
 }
